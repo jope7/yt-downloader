@@ -25,12 +25,9 @@ Para que o script funcione corretamente, você precisa de duas ferramentas gratu
 1.  **[yt-dlp](https://github.com/yt-dlp/yt-dlp/releases):** O executável principal.
 2.  **[FFmpeg](https://ffmpeg.org/download.html):** Necessário para converter áudios para MP3 e juntar faixas de vídeo/áudio.
 
-### Instalação e Execução
+### Execução
 
-1.  Baixe o arquivo `yt-dlp.exe` e coloque-o em uma pasta de sua preferência.
-2.  Certifique-se de que o **FFmpeg** esteja instalado e configurado nas Variáveis de Ambiente (PATH) do Windows.
-3.  Baixe o arquivo `.bat` deste repositório e coloque-o na **mesma pasta** onde está o `yt-dlp.exe`.
-4.  Execute o arquivo `.bat` (duplo clique).
+1.  Execute o arquivo `.bat` (duplo clique).
 
 ## 📋 Opções do Menu
 
