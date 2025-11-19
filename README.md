@@ -20,7 +20,7 @@ O objetivo deste projeto é oferecer uma interface de menu rápida para baixar c
 
 ### Pré-requisitos
 
-Para que o script funcione corretamente, você precisa de duas ferramentas gratuitas no seu computador:
+Para que o script funcione corretamente, você precisa de duas ferramentas gratuitas no seu computador (essa versão já vem com eles inclusos):
 
 1.  **[yt-dlp](https://github.com/yt-dlp/yt-dlp/releases):** O executável principal.
 2.  **[FFmpeg](https://ffmpeg.org/download.html):** Necessário para converter áudios para MP3 e juntar faixas de vídeo/áudio.
