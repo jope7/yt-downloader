@@ -1,5 +1,5 @@
 @echo off
-title YT-DLP Menu Loop
+title YT-DLP Menu
 
 REM Define o caminho usando a variavel de ambiente do Windows
 set "BASE_PATH=%USERPROFILE%\Documents\yt-dlp"
@@ -35,13 +35,14 @@ if not exist "yt-dlp.exe" (
 :menu
 cls
 echo ==========================================
-echo      ESCOLHA UMA OPCAO DE DOWNLOAD
+echo             ESCOLHA UMA OPCAO 
 echo ==========================================
 echo.
 echo 1. Baixar MP3 (Single)
 echo 2. Baixar MP4 (Single)
 echo 3. Baixar Playlist MP3
 echo 4. Baixar Playlist MP4
+echo 5. Atualizar yt-dlp
 echo.
 echo ==========================================
 echo Destino Base: %BASE_PATH%
@@ -50,7 +51,8 @@ echo ==========================================
 set "url="
 set "opt="
 set /p url="Cole o Link aqui: "
-set /p opt="Digite o numero da opcao (1-4): "
+if "%url%"=="" goto menu
+set /p opt="Digite o numero da opcao (1-5): "
 
 echo.
 echo Iniciando download...
@@ -58,27 +60,35 @@ echo.
 
 REM Opcao 1: MP3 Single
 if "%opt%"=="1" (
-    .\yt-dlp.exe -x --audio-format mp3 --audio-quality 0 -P "%BASE_PATH%\mp3" -o "%%(title)s.%%(ext)s" "%url%"
+    .\yt-dlp.exe -x --audio-format mp3 --audio-quality 0 %SAFE_ARGS% -P "%BASE_PATH%\mp3" -o "%%(title)s.%%(ext)s" "%url%"
     goto continuar
 )
 
 REM Opcao 2: MP4 Single
 if "%opt%"=="2" (
-    .\yt-dlp.exe -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" --merge-output-format mp4 -P "%BASE_PATH%\mp4" -o "%%(title)s.%%(ext)s" "%url%"
+   .\yt-dlp.exe -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" --merge-output-format mp4 %SAFE_ARGS% -P "%BASE_PATH%\mp4" -o "%%(title)s.%%(ext)s" "%url%"
     goto continuar
 )
 
 REM Opcao 3: Playlist MP3
 if "%opt%"=="3" (
-    .\yt-dlp.exe -x --audio-format mp3 --audio-quality 0 -o "%BASE_PATH%\%%(playlist)s\%%(playlist_index)s - %%(title)s.%%(ext)s" --yes-playlist "%url%"
+    .\yt-dlp.exe -x --audio-format mp3 --audio-quality 0 %SAFE_ARGS% -o "%BASE_PATH%\%%(playlist)s\%%(playlist_index)s - %%(title)s.%%(ext)s" --yes-playlist "%url%"
     goto continuar
 )
 
 REM Opcao 4: Playlist MP4
 if "%opt%"=="4" (
-    .\yt-dlp.exe -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" --merge-output-format mp4 -o "%BASE_PATH%\%%(playlist)s\%%(playlist_index)s - %%(title)s.%%(ext)s" --yes-playlist "%url%"
+   .\yt-dlp.exe -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" --merge-output-format mp4 %SAFE_ARGS% -o "%BASE_PATH%\%%(playlist)s\%%(playlist_index)s - %%(title)s.%%(ext)s" --yes-playlist "%url%"
     goto continuar
 )
+
+REM Opcao 5: Update
+if "%opt%"=="1" (
+    .\yt-dlp.exe -U
+    pause
+    goto menu
+)
+
 
 :continuar
 echo.
